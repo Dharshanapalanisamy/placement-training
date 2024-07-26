@@ -1,0 +1,381 @@
+1.We have created a `book_shop` class and added the constructor and `book()` function. The constructor will store the book title name and the `book()` function will print the book name.
+To test our code we have initialized the `b` object with “Sandman” and executed the `book()` function. 
+
+class book_shop:
+    def __init__(book,title):
+        book.title=title
+    def book(book):
+        print ("The title of the book is:",book.title)
+b=book_shop("Adventure")
+b.book()
+********************************************************
+2.Develop a shopping list application. Write a Python program that allows users to add items to the shopping list, remove items, and view the current list of items. Test Cases: a. Add "milk" to the shopping list. b. Add "bread" and "eggs" to the shopping list. c. Remove "bread" from the shopping list. d. View the current list (should contain "milk" and "eggs").
+
+class lis:
+    def __init__(name):
+        name.items=[]
+    def add_item(name,item):
+        if item not in name.items:
+            name.items.append(item)
+            print(f"The item {item} is added!")
+        else:
+            print(f"The item{item}already exists!")
+    def rem_item(name,item):
+        if item in name.items:
+            name.items.remove(item)
+            print(f"The item {item} is removed!")
+        else:
+            print(f"The item {item} exists!")
+    def view_list(name):
+        for item in name.items:
+            print(f" {item}")
+lists=lis()
+lists.add_item("Milk")
+lists.add_item("Bread")
+lists.add_item("Egg")
+lists.rem_item("Bread")
+lists.view_list()
+********************************************************
+3.Given a list of student grades, write a Python program to calculate the average grade, find the highest and lowest grades, and print a list of students who scored above the average
+
+grades = [85, 90, 78, 92, 88]
+average_grade = sum(grades) / len(grades)
+highest_grade = max(grades)
+lowest_grade = min(grades)
+above_average = [grade for grade in grades if grade > average_grade]
+print(f"Average Grade: {average_grade:.2f}")
+print(f"Highest Grade: {highest_grade}")
+print(f"Lowest Grade: {lowest_grade}")
+print(f"Above Average: {above_average}")
+*******************************************************************
+4.You are implementing a voting system. Write a Python program that takes a list of votes (each vote being a candidate's name) and determines the winner by finding the candidate with the most votes
+from collections import Counter
+
+def winner(votes):
+    vote_count = Counter(votes)
+    winner, most_votes = vote_count.most_common(1)[0]
+    return winner, most_votes
+votes = ['Alice', 'Bob', 'Alice', 'Charlie', 'Bob', 'Alice', 'Bob']
+winner, votes_count = winner(votes)
+print(f"The winner is {winner} with {votes_count} votes")
+********************************************************************
+5.In a library management system, write a Python program to maintain a list of books. The program should allow adding new books, removing borrowed books, and displaying a list of available books.
+
+class Library:
+    def __init__(name):
+        name.books = []  
+    def add_book(name,title):
+        if title not in name.books:
+            name.books.append(title)
+            print(f'Added book: "{title}"')
+        else:
+            print(f'Book "{title}" already exists .')
+    def remove_book(name,title):
+        if title in name.books:
+            name.books.remove(title)
+            print(f'Removed book: {title}')
+        else:
+            print(f'Book "{title}" is not in the library.')
+    def display_books(name):
+        if not name.books:
+            print("No books available in the library.")
+        else:
+            print("Available books :")
+            for book in name.books:
+                print(f' {book}')
+library = Library()
+library.add_book("Adventure")
+library.add_book("the true love")
+library.add_book("nightingale")
+library.remove_book("the true love")
+library.display_books()
+***********************************************************
+6.Write a Python program to check the strength of a password. A strong password must have at least 8 characters, include both uppercase and lowercase letters, and contain at least one digit
+
+import re
+def password(password):
+    if len(password) < 8:
+        return False
+    if not re.search(r'[A-Z]', password):
+        return False
+    if not re.search(r'[a-z]', password):
+        return False
+    if not re.search(r'[1-9]', password):
+        return False
+    if not re.search(r'[!@#$%^&*]', password):
+        return False
+    return True
+password = input("Enter a password : ")
+if len(password) < 8:
+    print ("Strong")
+else:
+    print("Weak")
+************************************************************
+7.Write a Python program to check if a given string is a palindrome (reads the same forwards and backwards).
+Test Cases:
+a.	"racecar" (palindrome)
+b.	"hello" (not a palindrome)
+c.	"madam" (palindrome)
+d.	"Python" (not a palindrome)
+
+def palindrome(string): 
+    string=string.replace("","").lower()
+    return string==string[::-1] 
+print(palindrome("racecar"))  
+print(palindrome("hello"))   
+print(palindrome("madam"))
+print(palindrome("python"))
+*********************************************************************
+8.Write a Python program to convert a given string to title case (first letter of each word in uppercase).
+Test Cases:
+a.	"hello world" = "Hello World"
+b.	"python programming" = "Python Programming"
+c.	"a quick brown fox" = "A Quick Brown Fox"
+
+def title_case(s):
+    return s.title()
+test_cases = ["hello world","python programming","a quick brown fox"]
+for test in test_cases:
+    case = title_case(test)
+    print(f"{test} = {case}")
+*********************************************************************8
+9.Write a Python program to manage event attendees. The program should maintain a list of attendees, allow adding new attendees, remove attendees who cancel, and print the current list of attendees.
+Test Cases:
+a.	Add attendees "John" and "Jane".
+b.	Remove attendee "Jane".
+c.	Display the current list of attendees (should show "John").
+
+class EventManager:
+    def __init__(self):
+        self.attendees = []  
+    def add_attendee(self, name):
+        if name not in self.attendees:
+            self.attendees.append(name)
+            print(f'Added attendee: "{name}"')
+        else:
+            print(f'"{name}" is already in the list.')
+    def remove_attendee(self, name):
+        if name in self.attendees:
+            self.attendees.remove(name)
+            print(f'Removed attendee: "{name}"')
+        else:
+            print(f'"{name}" is not in the list.')
+    def display_attendees(self):
+        if not self.attendees:
+            print("No attendees currently.")
+        else:
+            print("Current list of attendees:")
+            for attendee in self.attendees:
+                print(f'- {attendee}')
+event_manager = EventManager()
+event_manager.add_attendee("John")
+event_manager.add_attendee("Jane")
+event_manager.remove_attendee("Jane")
+event_manager.display_attendees()
+******************************************************************
+10..Write a Python program to count the number of vowels in a given string.
+Test Cases:
+a.	"hello" = 2
+b.	"python" =1 
+c.	"beautiful" = 5
+
+def count_vowels(s):
+    vowels = 'aeiouAEIOU'  
+    count = 0
+    for char in s:
+        if char in vowels:
+            count += 1
+    return count
+test_cases = ["hello", "python","beautiful"]
+for test in test_cases:
+    vowels = count_vowels(test)
+    print(f'{test}={vowels} ')
+*********************************************************************
+11.Write a function longest_word(text) that finds and returns the longest word in a given text.
+Test Cases:
+a.	text = "Python is a powerful programming language" = "programming"
+b.	text = "The quick brown fox jumps over the lazy dog" = "jumps"
+
+def longest_word(text):
+    words = text.split()
+    longest = max(words, key=len) if words else ""
+    return longest
+test_cases = [ "Python is a powerful programming language",  
+    "The quick brown fox jumps over the lazy dog" ]
+for text in test_cases:
+    result = longest_word(text)
+    print(f'Longest word in "{text}"="{result}"')
+****************************************************************************
+12. Write a function elementwise_addition that takes two numpy arrays of the same shape and returns a new array that is the element-wise sum of the input arrays.
+import numpy as np 
+
+def  elementwise_addition(arr1,arr2): 
+    try: 
+        res=arr1+arr2 
+        return res 
+    except ValueError as e: 
+        print("Error:",e) 
+arr1=np.array([1,2,3]) 
+arr2=np.array([4,5,6]) 
+print("Array 1=",arr1) 
+print("Array 2=",arr2) 
+print("The sum of arrays:",elementwise_addition(arr1,arr2))
+*******************************************************************************
+13. Write a Python module that converts decimal to binary and binary to decimal. Generate a Python program that imports the conversion module and utilizes those function
+
+convertor.py 
+def d_to_b(x): 
+    return bin(x) 
+def b_to_d(x): 
+    return int(x,2)  
+main.py 
+import convertor 
+a=int(input("Enter the decimal value:\n")) 
+b=input("Enter the binary value:\n") 
+print(f"The binary value of {a} is {convertor.d_to_b(a)}") 
+print(f"The decimal value of {b} is {convertor.b_to_d(b)}")
+****************************************************************************************
+14. Write a Python module for currency conversion. Use that conversion functions in another Python program
+
+m1.py 
+def usd_to_ind(amount): 
+    return amount*83.335 
+def usd_to_ind(amount): 
+    return amount / 83.335 
+main.py 
+import m1 
+u=int(input("Enter the amount in USD: ")) 
+print(u) 
+ind_amnt=m1.usd_to_ind(u) 
+print(f"{u} USD is equal to {ind_amnt}Rs!!") 
+i=int(input("Enter the amount in indian Rs:")) 
+print(f"{i}Rs is equal to {usd_to_ind} in USD!!")
+**********************************************************************************************
+15. Create a function called func1() that accepts a variable number of arguments and prints their values. You should be able to pass any number of arguments to this function, and it should process and display each argument’s value.
+
+def func1(*args): 
+    for arg in args: 
+        print(arg) 
+func1(1,2,3,"Hello",[4,5,6])
+**********************************************************************************************
+16. You are developing a Python program for an online food ordering system that includes decision-making elements. The system should allow users to browse a menu, add items to their cart, specify delivery details, and place orders. Additionally, the system should dynamically apply discounts based on order totals, validate delivery addresses for availability, and adjust delivery times based on current order volume. Your program should include the following functionalities incorporating decision-making logic: Dynamic Discounts: Implement a system that automatically applies discounts based on the total amount of the order. For example, offer a 10% discount for orders above $50 and a 15% discount for orders above $100. •Test Case Description: Verify that discounts are applied correctly based on the total order amount. • Input: User adds items to the cart, resulting in different total amounts. • Expected Output: Discounts are applied according to predefined thresholds, and the order total reflects the correct discounted amount.
+
+a={"Briyani":10,"cola":24,"chips":3000} 
+user_dict={} 
+while True: 
+    option=int(input("1.Briyani for 10\n2.Cola for 24\n3.chips for 3000\n4.To exit menu")) 
+    if option==4: 
+        break 
+    qtnty=int(input("Enter the quantity of the product:\n")) 
+    print("\n") 
+    if option==1: 
+        user_dict["briyani"]=[qtnty,a["Briyani"]] 
+    elif option==2: 
+        user_dict["Cola"]=[qtnty,a["cola"]] 
+    elif option==3: 
+        user_dict["chips"]=[qtnty,a["chips"]] 
+print("The cart is ready!") 
+def adr_check(): 
+    adr=input("Enter your address:\n") 
+    for i in adr.split(): 
+        if(i.lower()=="ksr"): 
+            return False 
+        else: 
+            return True 
+while True: 
+    if adr_check()==True: 
+        print("Deliver OK!!") 
+        break 
+    else: 
+        print("Try another address") 
+total_amnt=0 
+for i in user_dict: 
+    if(i=="briyani"): 
+        total_amnt+=user_dict[i][0]*user_dict[i][1] 
+    elif(i=="Cola"): 
+        total_amnt+=user_dict[i][0]*user_dict[i][1] 
+    elif(i=="Chips"): 
+        total_amnt+=user_dict[i][0]*user_dict[i][1] 
+if(total_amnt>50): 
+    total_amny-=total_amnt*0.1 
+elif(total_amnt>100): 
+    total_amnt-=total_amnt*0.5 
+print("\n") 
+print(f"After deducting the discount the total amount is:{total_amnt}")
+*****************************************************************************************
+17. Create a program that simulates a simple ATM machine, prompting the user for their account balance and withdrawal amount, then outputs whether the transaction is successful or not based on the available balance and withdrawal amount. Test Case 1: Account balance: $1000, Withdrawal amount: $500. Expected output: Transaction successful. Test Case 2: Account balance: $200, Withdrawal amount: $300. Expected output: Insufficient funds. Test Case 3: Account balance: $1500, Withdrawal amount: $1500. Expected output: Transaction successful.
+
+ba=int(input()) 
+wa=int(input()) 
+if ba==1000 and wa==500: 
+    print("Transaction Successful.") 
+elif ba<=200 and wa<=300: 
+    print("Insufficient funds.") 
+elif ba>1000 and ba<5000: 
+    print("Transaction sucessful.") 
+else: 
+    print("No account.")
+*******************************************************************************************
+18. You're building an email sending application. Design a Python function that takes a user's first name and last name as input and generates an email address for them. The email address should be in the format "firstname.lastname@example.com".
+
+def mail (ft,lt): 
+    print(f"{ftname}.{ltname}@example.com") 
+ftname=input() 
+ltname=input() 
+mail(ftname,ltname)
+********************************************************************************************
+19. Write a Python function that takes two strings as input and returns True if they are anagrams, False otherwise. An anagram is a word or phrase formed by rearranging the letters of another, such as "listen" and "silent".
+
+def anagram (col1,col2): 
+    col1=col1.lower() 
+    col2=col2.lower() 
+    len(col1)==len(col2) 
+    return sorted(col1)==sorted(col2) 
+col1=input(" ") 
+col2=input(" ") 
+print(anagram(col1,col2))
+**************************************************************************************************
+20. You are developing a movie recommendation system. Write a Python program to recommend movies to a user based on their preferences stored in a dictionary.
+
+movies={ 
+    "The Dark Knight":["Action"], 
+    "Inception":["Action"], 
+    "The Hangover":["Comedy"], 
+    "Superbad":["Comedy"] 
+} 
+def recommend_movies(preferences,movies): 
+    recommended_movies=[] 
+    for movie,genres in movies.items(): 
+        if any(genre in preferences for genre in genres): 
+            recommended_movies.append(movie) 
+    return recommended_movies 
+user_preferences={ 
+    "Action":"True",  
+    "Comedy":"True" 
+} 
+recommendations= recommend_movies(user_preferences,movies) 
+if recommendations: 
+    print("Recommended_movies:") 
+    for movie in recommendations: 
+        print("-",movie) 
+else: 
+    print("no movies found")
+************************************************************************************
+21. You are developing a voting system for a school election. Write a Python program to count the number of votes each candidate receives and store the results in a dictionary.
+vote={} 
+num_candidates=int(input("Enter the number of candidates:")) 
+for i in range (1,num_candidates+1): 
+    candidate_name=input(f"Enter the name of the candidate {i}:") 
+    vote_count=int(input(f"Enter the number of votes for {candidate_name}:")) 
+    vote[candidate_name]=vote_count 
+    print("Dictionary of votes:",vote) 
+    print("Output:") 
+    for candidate,count in vote.items(): 
+            print(f"{candidate}:{count}")
+
+
+
+
+
+
+
